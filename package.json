@@ -27,5 +27,8 @@
     "mongoose": "^8.10.0",
     "path": "^0.12.7",
     "xss-clean": "^0.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   }
 }
