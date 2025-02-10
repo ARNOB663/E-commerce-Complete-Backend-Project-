@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public'))); // for static files like images, css, js
 app.use(helmet());
 app.use(mongoSanitize());
-
+//
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
@@ -35,7 +35,7 @@ const limiter = rateLimit({
     windowMs: 10 * 60 * 1000,
     max: 100
 });
-
+//this is for the static files like images, css, js etc
 app.use(express.static('client/dist'));
 
 app.use(limiter);
