@@ -7,7 +7,9 @@ const DataSchema = new mongoose.Schema({
     img4:{type:String,required:true},
     img5:{type:String},
     img6:{type:String},
+    
     img7:{type:String},
+
     img8:{type:String},
     
         remark:{type:String,required:true},
