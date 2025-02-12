@@ -26,8 +26,9 @@ app.use(express.static(path.join(__dirname, 'public'))); // for static files lik
 app.use(helmet());
 app.use(mongoSanitize());
 
-//
+// CORS -  Cross Origin Resource Sharing - it is a security feature implemented in the browser to prevent malicious requests from one website to another website.
 app.use(cors());
+// 
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
