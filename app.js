@@ -25,6 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public'))); // for static files like images, css, js
 app.use(helmet());
 app.use(mongoSanitize());
+
 //
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
