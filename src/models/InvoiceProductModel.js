@@ -14,5 +14,5 @@ const DataSchema = new mongoose.Schema({
 
 
 
-const InvoiceProductModel =  mongoose.model("Invoiceproducts", DataSchema)
+const InvoiceProductModel =  mongoose.model("invoiceproducts", DataSchema)
 module.exports = InvoiceProductModel

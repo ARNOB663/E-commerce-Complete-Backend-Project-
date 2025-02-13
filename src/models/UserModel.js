@@ -5,5 +5,5 @@ const DataSchema = new mongoose.Schema({
 
 },{timestamps:true, versionKey:false});
 
-const UserModel = mongoose.model("Users", DataSchema);
+const UserModel = mongoose.model("users", DataSchema);
 module.exports = UserModel;
