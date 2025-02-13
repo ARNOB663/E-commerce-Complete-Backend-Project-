@@ -20,5 +20,5 @@ const DataSchema = new mongoose.Schema({
 
 },{timestamps:true, versionKey:false});
 
-const  ProfileModel = mongoose.model("Users", DataSchema);
+const  ProfileModel = mongoose.model("profiles", DataSchema);
 module.exports = ProfileModel;
