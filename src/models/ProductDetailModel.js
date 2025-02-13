@@ -7,14 +7,14 @@ const DataSchema = new mongoose.Schema({
     img4:{type:String,required:true},
     img5:{type:String},
     img6:{type:String},
-    
     img7:{type:String},
-
     img8:{type:String},
+
+    des:{type:String,required:true},
+    color:{type:String,required:true},
+    size:{type:String,required:true},
     
-        remark:{type:String,required:true},
-         categoryID:{type:mongoose.Schema.Types.ObjectId,ref:"categories",required:true},
-         brandID:{type:mongoose.Schema.Types.ObjectId,ref:"brands",required:true},
+        productID:{type:mongoose.Schema.Types.ObjectId,required:true},
 },{
     timestamps: true, versionKey: false
 })
