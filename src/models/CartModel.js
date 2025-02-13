@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
-const { schema } = require("./UserModel");
 
-const DataSchema = new schema({
+const DataSchema = new Schema({
     productID:{type:mongoose.Schema.Types.ObjectId, required:true},
     userID:{type:mongoose.Schema.Types.ObjectId, required:true},
    color:{type:String, required:true},
