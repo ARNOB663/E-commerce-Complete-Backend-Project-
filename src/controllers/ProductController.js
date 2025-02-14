@@ -1,6 +1,18 @@
+const {
+    BrandListService,
+    CategoryListService,
+    SliderListService,
+    ListByBrandService,
+    ListByCategoryService,
+    ListBySimilarService,
+    ListByRemarkService,
+    DetailsService,
+    ReviewListService
+} = require('../services/ProductServices');
+
+
 exports.ProductBrandList= async (req , res)=>
 {
-
 
 }
 
