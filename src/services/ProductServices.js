@@ -40,3 +40,16 @@ const DetailsService = async () => {
 const ReviewListService = async () => {
 
 }
+
+
+module.exports = {
+    BrandListService,
+    CategoryListService,
+    SliderListService,
+    ListByBrandService,
+    ListByCategoryService,
+    ListBySimilarService,
+    ListByRemarkService,
+    DetailsService,
+    ReviewListService
+}
