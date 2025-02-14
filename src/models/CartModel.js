@@ -10,7 +10,9 @@ const DataSchema = new Schema({
     // createdAt:{type:Date, default:Date.now, required:true},
     // updatedAt:{type:Date, default:Date.now, required:true},
 
-},{})
+},{
+    timestamps: true, versionKey: false
+})
 
 const CartModel = mongoose.model("carts", DataSchema);
 module.exports = CartModel;
