@@ -9,5 +9,5 @@ const DataSchema = new Schema({
 
 },{timeStamps:true, versionKey:false});
 
-const ReviewModel = mongoose.model("wishes", DataSchema);
+const ReviewModel = mongoose.model("reviews", DataSchema);
 module.exports = ReviewModel;
