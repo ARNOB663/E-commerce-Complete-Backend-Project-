@@ -5,8 +5,30 @@ const ProductModel=require('../models/ProductModel');
 const ProductDetailModel=require('../models/ProductDetailModel');
 const ProductReviewModel=require('../models/ReviewModel');
 
-
-const ProductBrandListService = async () => {
-    // Logic to get the list of product brands
-    
+const BrandListService = async () => {
+    // Logic to get the list of product brands   
 };
+
+const CategoryListService = async () => {
+
+}
+
+const SliderListService = async () => {
+
+}
+
+const ListByBrandService = async () => {
+    
+}
+
+const ListByCategoryService = async () => {
+
+}
+
+const ListBySimilarService = async () => {
+
+}
+
+const ListByRemarkService = async () => {
+
+}
