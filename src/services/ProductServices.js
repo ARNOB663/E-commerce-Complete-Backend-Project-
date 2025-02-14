@@ -32,3 +32,11 @@ const ListBySimilarService = async () => {
 const ListByRemarkService = async () => {
 
 }
+
+const DetailsService = async () => {
+
+}
+
+const ReviewListService = async () => {
+
+}
