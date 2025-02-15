@@ -36,6 +36,10 @@ exports.ProductListByCategory = async (req , res)=>{
 
 }
 
+exports.ProductListBySimilar=async(req,res)=>{
+    
+}
+
 exports.ProductListByKeyWord = async (req , res)=>{
 
 
