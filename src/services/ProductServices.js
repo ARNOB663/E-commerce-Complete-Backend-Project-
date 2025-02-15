@@ -7,11 +7,25 @@ const ProductReviewModel=require('../models/ReviewModel');
 
 const BrandListService = async () => {
     // Logic to get the list of product brands   
+    try{
+        let data = await BrandModel.find(); // get all the brands from the database
+        return {status:"Success",data:data}.toString() // return the data in string format 
+
+    }
+    catch(err){
+        return {status:"fail",data:err}.toString() // return the error in string format
+
+    }
 };
 
 const CategoryListService = async () => {
+    try{
+         
+    }
+catch(err){
 
 }
+
 
 const SliderListService = async () => {
 
