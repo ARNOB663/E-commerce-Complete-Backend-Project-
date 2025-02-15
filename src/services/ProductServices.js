@@ -10,20 +10,21 @@ const BrandListService = async () => {
     try{
         let data = await BrandModel.find(); // get all the brands from the database
         return {status:"Success",data:data}.toString() // return the data in string format 
-
     }
     catch(err){
         return {status:"fail",data:err}.toString() // return the error in string format
-
     }
 };
 
 const CategoryListService = async () => {
     try{
+        let data = await CategoryModel.find(); // get all the categories from the database
+        return {status:"Success",data:data}.toString() // return the data in string format
          
     }
 catch(err){
-
+    return {status:"fail",data:err}.toString() // return the error in string format
+}
 }
 
 
