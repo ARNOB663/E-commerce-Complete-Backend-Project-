@@ -29,6 +29,14 @@ catch(err){
 
 
 const SliderListService = async () => {
+   try{
+    let data = await ProductSliderModel.find(); // get all the sliders from the database
+    return {status:"Success",data:data}.toString() // return the data in string format
+    
+   }
+   catch(err){
+    return {status:"fail",data:err}.toString() // return the error in string format
+   }
 
 }
 
