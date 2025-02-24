@@ -39,12 +39,13 @@ const SliderListService = async () => {
    }
 
 }
-
 const ListByBrandService = async (req) => {
     try {
         let BrandID = ObjectId(req.params.BrandID);
         let MatchStage = { $match: { BrandID: BrandID } };
-        //
+        
+
+        
         let JoinWithBrandStage = { $lookup: { from: "brands", localField: "BrandID", foreignField: "_id", as: "brands" } }; // join with brand collection to get brand name and logo 
         let JoinWithCategoryStage = { $lookup: { from: "categories", localField: "CategoryID", foreignField: "_id", as: "categories" } }; // join with category collection to get category name
 
@@ -53,7 +54,6 @@ const ListByBrandService = async (req) => {
             JoinWithBrandStage,
             JoinWithCategoryStage
         ]);
-
 
         console.log(data); // Log the data to debug
 
