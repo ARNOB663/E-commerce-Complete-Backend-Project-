@@ -44,13 +44,16 @@ const ListByBrandService = async (req) => {
         let BrandID =new ObjectId(req.params.BrandID);
         let MatchStage = { $match: { brandID: BrandID } };
                 
-        let JoinWithBrandStage = { $lookup: { from: "brands", localField: "BrandID", foreignField: "_id", as: "brands" } }; // join with brand collection to get brand name and logo 
-        let JoinWithCategoryStage = { $lookup: { from: "categories", localField: "CategoryID", foreignField: "_id", as: "categories" } }; // join with category collection to get category name
+        let JoinWithBrandStage = { $lookup: { from: "brands", localField: "brandID", foreignField: "_id", as: "brands" } }; // join with brand collection to get brand name and logo 
+        let JoinWithCategoryStage = { $lookup: { from: "categories", localField: "categoryID", foreignField: "_id", as: "categories" } }; // join with category collection to get category name
+
+        let UnwindBrandStage = {$unwind:"$brands"}; // unwind the brand array
 
         let data = await ProductModel.aggregate([
             MatchStage,
             JoinWithBrandStage,
-            JoinWithCategoryStage
+            JoinWithCategoryStage,
+            UnwindBrandStage
         ]);
 
         console.log(data); // Log the data to debug
