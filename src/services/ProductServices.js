@@ -39,6 +39,9 @@ const SliderListService = async () => {
    }
 
 }
+
+
+
 const ListByBrandService = async (req) => {
     try {
         let BrandID =new ObjectId(req.params.BrandID);
@@ -99,13 +102,42 @@ const ListByCategoryService = async (req) => {
 
 }
 
+const ListByRemarkService = async (req) => {
+
+    try {
+        let Remark = req.params.Remark;
+        let MatchStage = { $match: { remark: Remark } };// match the category id with the category id in the database
+                
+        let JoinWithBrandStage = { $lookup: { from: "brands", localField: "brandID", foreignField: "_id", as: "brand" } }; // join with brand collection to get brand name and logo 
+        let JoinWithCategoryStage = { $lookup: { from: "categories", localField: "categoryID", foreignField: "_id", as: "category" } }; // join with category collection to get category name
+                
+        let UnwindBrandStage = {$unwind:"$brand"}; // unwind the brand array
+        let UnwindCategoryStage = {$unwind:"$category"}; // unwind the category array
+         // unwind the category array to get the category name and id in the output 
+        let ProjectionStage = {$project:{'brand._id':0,'category._id':0,'categoryID':0,'brandID':0}}; // project the fields to be displayed in the output
+
+        let data = await ProductModel.aggregate([
+            MatchStage,
+            JoinWithBrandStage,
+            JoinWithCategoryStage,
+            UnwindBrandStage,
+            UnwindCategoryStage,
+            ProjectionStage
+        ]);
+
+        return { status: "Success", data: data }; // return the data as an object
+
+    } catch (err) {
+        return { status: "fail", data: err }; // return the error as an object
+    }
+
+}
+
 const ListBySimilarService = async () => {
 
 }
 
-const ListByRemarkService = async () => {
 
-}
 
 const DetailsService = async () => {
 
