@@ -31,7 +31,7 @@ catch(err){
 const SliderListService = async () => {
    try{
     let data = await ProductSliderModel.find(); // get all the sliders from the database
-    return {status:"Success",data:data}.toString() // return the data in string format
+    return {status:"Success",data:data} // return the data in string format
     
    }
    catch(err){
@@ -41,11 +41,9 @@ const SliderListService = async () => {
 }
 const ListByBrandService = async (req) => {
     try {
-        let BrandID = ObjectId(req.params.BrandID);
-        let MatchStage = { $match: { BrandID: BrandID } };
-        
-
-        
+        let BrandID =new ObjectId(req.params.BrandID);
+        let MatchStage = { $match: { brandID: BrandID } };
+                
         let JoinWithBrandStage = { $lookup: { from: "brands", localField: "BrandID", foreignField: "_id", as: "brands" } }; // join with brand collection to get brand name and logo 
         let JoinWithCategoryStage = { $lookup: { from: "categories", localField: "CategoryID", foreignField: "_id", as: "categories" } }; // join with category collection to get category name
 
