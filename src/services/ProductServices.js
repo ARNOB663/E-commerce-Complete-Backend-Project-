@@ -5,6 +5,7 @@ const ProductSliderModel=require('../models/ProductSliderModel');
 const ProductModel=require('../models/ProductModel');
 const ProductDetailModel=require('../models/ProductDetailModel');
 const ProductReviewModel=require('../models/ReviewModel');
+const ReviewModel = require('../models/ReviewModel');
 const ObjectId = mongoose.Types.ObjectId;//imported mongoose object id to use it in the code
 
 const BrandListService = async () => {
@@ -131,6 +132,38 @@ const ListByRemarkService = async (req) => {
     }
 
 }
+const ListByKeywordService = async (req)=>{
+    try{
+          let SearchRegex={"$regex":req.params.keyword,"$options":"i"}//
+          let SearchParams=[{title:SearchRegex},{shortDes:SearchRegex}]//
+          let SearchQuery={$or:SearchParams}
+
+          let MatchStage= {$match:SearchQuery}
+
+          let JoinWithBrandStage = { $lookup: { from: "brands", localField: "brandID", foreignField: "_id", as: "brand"}}; // join with brand collection to get brand name and logo 
+          let JoinWithCategoryStage = { $lookup: { from: "categories", localField: "categoryID", foreignField: "_id", as: "category"}}; // join with category collection to get category name
+           
+          let UnwindBrandStage = {$unwind:"$brand"}; // unwind the brand array
+          let UnwindCategoryStage = {$unwind:"$category"}; // unwind the category array
+           // unwind the category array to get the category name and id in the output 
+          let ProjectionStage = {$project:{'brand._id':0,'category._id':0,'categoryID':0,'brandID':0}}; // project the fields to be displayed in the output
+          
+          let data = await ProductModel.aggregate([
+            MatchStage,
+            JoinWithBrandStage,
+            JoinWithCategoryStage,
+            UnwindBrandStage,
+            UnwindCategoryStage,
+            ProjectionStage
+        ]);
+        return { status: "Success", data: data }; 
+    }
+    catch(err){
+        return { status: "fail", data: err }; // return the error as an object
+    }
+
+
+}
 
 
 
@@ -204,7 +237,26 @@ catch(err){
 }
 }
 
-const ReviewListService = async () => {
+const ReviewListService = async (req) => {
+
+    try{
+      let ProductID = new ObjectId(req.params.ProductID)
+      let MatchStage={$match:{productID:ProductID}};
+      let JoinWithProfileStage={$lookup:{from:"profiles",localField:"userID",foreignField:"userID",as:"profile"}}
+
+
+      let data = await ReviewModel.aggregate([
+       MatchStage,
+       JoinWithProfileStage
+
+      ])
+
+      return {status:"success",data:data}
+    }
+    catch(err)
+    {
+        return { status: "fail", data: err };
+    }
 
 }
 module.exports = {
@@ -216,5 +268,6 @@ module.exports = {
     ListBySimilarService,
     ListByRemarkService,
     DetailsService,
-    ReviewListService
+    ReviewListService,
+    ListByKeywordService
 }

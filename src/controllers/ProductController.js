@@ -7,7 +7,8 @@ const {
     ListBySimilarService,
     ListByRemarkService,
     DetailsService,
-    ReviewListService
+    ReviewListService,
+    ListByKeywordService
 } = require('../services/ProductServices');
 
 
@@ -50,7 +51,8 @@ exports.ProductListBySimilar=async(req,res)=>{
 }
 
 exports.ProductListByKeyWord = async (req , res)=>{
-
+    let result = await ListByKeywordService(req)
+    return res.status(200).json(result)
 
 }
 
@@ -70,6 +72,8 @@ exports.ProductDetails = async (req , res)=>{
 
 exports.ProductReviewList = async (req , res)=>{
 
+    let result = await  ReviewListService(req)
+    return res.status(200).json(result);
 
 }
 
