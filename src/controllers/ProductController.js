@@ -35,19 +35,18 @@ exports.ProductSliderList =  async (req , res)=>{
 exports.ProductListByBrand = async (req , res)=>{
     let result = await ListByBrandService(req);
     return res.status(200).json(result);
-
-
 }
 
 exports.ProductListByCategory = async (req , res)=>{
     let result = await ListByCategoryService(req);
     return res.status(200).json(result);
-
-
 }
 
+
 exports.ProductListBySimilar=async(req,res)=>{
-    
+
+    let result= await ListBySimilarService(req);
+    return res.status(200).json(result);    
 }
 
 exports.ProductListByKeyWord = async (req , res)=>{
@@ -63,6 +62,8 @@ exports.ProductListByRemark = async (req , res)=>{
 
 
 exports.ProductDetails = async (req , res)=>{
+    result = await DetailsService(req);
+    return res.status(200).json(result);
 
 
 }
