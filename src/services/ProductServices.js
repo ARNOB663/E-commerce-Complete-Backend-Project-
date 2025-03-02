@@ -41,8 +41,6 @@ const SliderListService = async () => {
 
 }
 
-
-
 const ListByBrandService = async (req) => {
     try {
         let BrandID =new ObjectId(req.params.BrandID);
@@ -237,17 +235,24 @@ catch(err){
 }
 }
 
+
 const ReviewListService = async (req) => {
     try{
       let ProductID = new ObjectId(req.params.ProductID)
       let MatchStage={$match:{productID:ProductID}};
       let JoinWithProfileStage={$lookup:{from:"profiles",localField:"userID",foreignField:"userID",as:"profile"}}
+      let UnwindProfileStage={$unwind:"$profile"}
+      let ProjectionStage={$project:{
+           'des':1,
+           'rating':1,
+           'profile.cus_name':1,
+      }
+      }
       // console.log(MatchStage)
-    
       let data = await ReviewModel.aggregate([
        MatchStage,
-       JoinWithProfileStage
-
+       JoinWithProfileStage,
+       UnwindProfileStage,ProjectionStage
       ])
 
       return {status:"success",data:data}
