@@ -67,7 +67,6 @@ exports.ProductDetails = async (req , res)=>{
     result = await DetailsService(req);
     return res.status(200).json(result);
 
-
 }
 
 exports.ProductReviewList = async (req , res)=>{
