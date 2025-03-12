@@ -253,14 +253,12 @@ const ReviewListService = async (req) => {
        JoinWithProfileStage,
        UnwindProfileStage,ProjectionStage
       ])
-
       return {status:"success",data:data}
     }
     catch(err)
     {
         return { status: "fail", data: err };
     }
-
 }
 module.exports = {
     BrandListService,
