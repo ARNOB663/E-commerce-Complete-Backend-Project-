@@ -9,7 +9,7 @@ const ReviewModel = require('../models/ReviewModel');
 const ObjectId = mongoose.Types.ObjectId;//imported mongoose object id to use it in the code
 
 const BrandListService = async () => {
-    // Logic to get the list of product brands   
+    // Logic to get the list of product brands
     try{
         let data = await BrandModel.find(); // get all the brands from the database
         return {status:"Success",data:data} // return the data in string format 
@@ -18,7 +18,6 @@ const BrandListService = async () => {
         return {status:"fail",data:err}.toString() // return the error in string format
     }
 };
-
 const CategoryListService = async () => {
     try{
         let data = await CategoryModel.find(); // get all the categories from the database
